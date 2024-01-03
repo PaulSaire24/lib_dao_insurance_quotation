@@ -1,0 +1,12 @@
+{
+    "component": "r2artifact",
+    "repoName": "lib_dao_insurance_quotation",
+    "uuaa": "pisd",
+    "slave_label": "apx",
+    "extra_properties": null,
+    "apxrepoBranch": "master",
+    "componentPaaSId": "lib_dao_insurance_quotation",
+    "appPaaSId": "pisd",
+    "proyectPaaSId": "pe.pisd.app-id-26197.dsg",
+    "resource_type": "lib"
+}
