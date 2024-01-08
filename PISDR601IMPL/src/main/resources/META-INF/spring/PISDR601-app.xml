@@ -3,5 +3,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:osgi="http://www.springframework.org/schema/osgi"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd">
-	<bean id="pisdR601" class="com.bbva.pisd.lib.r601.impl.PISDR601Impl" parent="pisdR601Abstract"/>
+	<bean id="pisdR601" class="com.bbva.pisd.lib.r601.impl.PISDR601Impl" parent="pisdR601Abstract">
+		<property name="quotationDAO" ref="oracleQuotationDAO"/>
+	</bean>
+	<!-- Dao -->
+	<bean id="oracleQuotationDAO" class="com.bbva.pisd.lib.r601.dao.OracleQuotationDAO">
+		<property name="baseDAO" ref="baseDAO"/>
+	</bean>
+
+	<bean id="baseDAO" class="com.bbva.pisd.lib.r601.dao.BaseDAO" >
+		<property name="jdbcUtils" ref="jdbcUtils"/>
+	</bean>
+
 </beans>
