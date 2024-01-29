@@ -6,6 +6,7 @@ import com.bbva.elara.domain.transaction.Context;
 import com.bbva.elara.domain.transaction.ThreadContext;
 import com.bbva.elara.utility.jdbc.JdbcUtils;
 import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
+import com.bbva.pisd.dto.insurancedao.join.QuotationJoinCustomerInformationDTO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -83,29 +84,18 @@ public class PISDR601Test {
 		/**
 		 * Ejecución
 		 * */
-		QuotationEntity result = this.pisdR601.executeFindQuotationByPolicyQuotaInternalId("0814000000691");
+		QuotationJoinCustomerInformationDTO result = this.pisdR601.executeFindQuotationJoinByPolicyQuotaInternalId("0814000000691");
 		Assert.assertNotNull(result);
-		Assert.assertEquals("0814000000691",result.getPolicyQuotaInternalId());
-		Assert.assertEquals("691",result.getInsuranceSimulationId());
-		Assert.assertEquals("1feae442-690a-4a19-88e1-e0a94b69540f",result.getInsuranceCompanyQuotaId());
-		Assert.assertEquals("2021-05-21",result.getQuoteDate());
-		Assert.assertEquals("2021-05-21 14:51:12.773926",result.getQuotaHmsDate());
-		Assert.assertEquals("2021-06-18",result.getPolicyQuotaEndValidityDate());
-		Assert.assertEquals("97171890",result.getCustomerId());
-		Assert.assertEquals("COT",result.getPolicyQuotaStatusType());
-		Assert.assertEquals("0814",result.getLastChangeBranchId());
-		Assert.assertEquals("0814",result.getSourceBranchId());
-		Assert.assertEquals("ZG13001",result.getCreationUserId());
-		Assert.assertEquals(format.parse("2021-05-21 14:51:12.773926"),result.getCreationDate());
-		Assert.assertEquals("ZG13001",result.getUserAuditId());
-		Assert.assertEquals(format.parse("2021-05-21 14:51:12.773926"),result.getAuditDate());
-		Assert.assertEquals("L",result.getPersonalDocType());
-		Assert.assertEquals("74207445",result.getParticipantPersonalId());
-		Assert.assertEquals(format.parse("2023-03-31 00:00:00.000000"),result.getPolicyQuotaCancellationDate());
-		Assert.assertEquals("MAVILA",result.getInsuredCustomerName());
-		Assert.assertEquals("ORTIZ",result.getClientLasName());
-		Assert.assertNull(result.getIssuedReceiptNumber());
-		Assert.assertNull(result.getLastFourPanId());
+		Assert.assertNotNull(result.getQuotation());
+		Assert.assertEquals("customer name",result.getQuotation().getInsuredCustomerName());
+		Assert.assertEquals("client last name",result.getQuotation().getClientLasName());
+		Assert.assertNotNull(result.getQuotationMod());
+		Assert.assertEquals("email@bbva.com",result.getQuotationMod().getContactEmailDesc());
+		Assert.assertEquals("923453849",result.getQuotationMod().getCustomerPhoneDesc());
+		Assert.assertNotNull(result.getInsuranceProduct());
+		Assert.assertEquals("834",result.getInsuranceProduct().getInsuranceProductType());
+		Assert.assertNotNull(result.getInsuranceBusiness());
+		Assert.assertEquals("PROTECCION_TARJETAS",result.getInsuranceBusiness().getInsuranceBusinessName());
 		Assert.assertEquals(0, context.getAdviceList().size());
 	}
 
@@ -114,7 +104,7 @@ public class PISDR601Test {
 		/**
 		 * Execution
 		 * */
-		QuotationEntity result = this.pisdR601.executeFindQuotationByPolicyQuotaInternalId(null);
+		QuotationJoinCustomerInformationDTO result = this.pisdR601.executeFindQuotationJoinByPolicyQuotaInternalId(null);
 		Assert.assertNull(result);
 		Assert.assertEquals(0, context.getAdviceList().size());
 	}
@@ -122,27 +112,13 @@ public class PISDR601Test {
 	private Map<String, Object> getMockMapQuotationEntity() throws ParseException {
 
 		Map<String,Object> mapMockQuotationEntity = new HashMap<>();
-		mapMockQuotationEntity.put("POLICY_QUOTA_INTERNAL_ID","0814000000691");
-		mapMockQuotationEntity.put("INSURANCE_SIMULATION_ID","691");
-		mapMockQuotationEntity.put("INSURANCE_COMPANY_QUOTA_ID","1feae442-690a-4a19-88e1-e0a94b69540f");
-		mapMockQuotationEntity.put("QUOTE_DATE","2021-05-21");
-		mapMockQuotationEntity.put("QUOTA_HMS_DATE","2021-05-21 14:51:12.773926");
-		mapMockQuotationEntity.put("POLICY_QUOTA_END_VALIDITY_DATE","2021-06-18");
-		mapMockQuotationEntity.put("CUSTOMER_ID","97171890");
-		mapMockQuotationEntity.put("POLICY_QUOTA_STATUS_TYPE","COT");
-		mapMockQuotationEntity.put("LAST_CHANGE_BRANCH_ID","0814");
-		mapMockQuotationEntity.put("SOURCE_BRANCH_ID","0814");
-		mapMockQuotationEntity.put("CREATION_USER_ID","ZG13001");
-		mapMockQuotationEntity.put("CREATION_DATE",format.parse("2021-05-21 14:51:12.773926"));
-		mapMockQuotationEntity.put("USER_AUDIT_ID","ZG13001");
-		mapMockQuotationEntity.put("AUDIT_DATE",format.parse("2021-05-21 14:51:12.773926"));
-		mapMockQuotationEntity.put("PERSONAL_DOC_TYPE","L");
-		mapMockQuotationEntity.put("PARTICIPANT_PERSONAL_ID","74207445");
-		mapMockQuotationEntity.put("POLICY_QUOTA_CANCELLATION_DATE",format.parse("2023-03-31 00:00:00.000000"));
-		mapMockQuotationEntity.put("INSURED_CUSTOMER_NAME","MAVILA");
-		mapMockQuotationEntity.put("CLIENT_LAST_NAME","ORTIZ");
-		mapMockQuotationEntity.put("ISSUED_RECEIPT_NUMBER",null);
-		mapMockQuotationEntity.put("LAST_FOUR_PAN_ID",null);
+		mapMockQuotationEntity.put("INSURED_CUSTOMER_NAME","customer name");
+		mapMockQuotationEntity.put("CLIENT_LAST_NAME","client last name");
+		mapMockQuotationEntity.put("CONTACT_EMAIL_DESC","email@bbva.com");
+		mapMockQuotationEntity.put("CUSTOMER_PHONE_DESC","923453849");
+		mapMockQuotationEntity.put("INSURANCE_PRODUCT_TYPE","834");
+		mapMockQuotationEntity.put("INSURANCE_BUSINESS_NAME","PROTECCION_TARJETAS");
+
 		return mapMockQuotationEntity;
 	}
 	

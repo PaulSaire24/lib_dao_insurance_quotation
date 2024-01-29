@@ -1,4 +1,4 @@
-package com.bbva.pisd.lib.r601.transfor.map;
+package com.bbva.pisd.lib.r601.transform.map;
 
 import java.util.HashMap;
 import java.util.Map;
