@@ -7,6 +7,7 @@ import com.bbva.elara.domain.transaction.ThreadContext;
 import com.bbva.elara.utility.jdbc.JdbcUtils;
 import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
 import com.bbva.pisd.dto.insurancedao.join.QuotationJoinCustomerInformationDTO;
+import com.bbva.pisd.dto.insurancedao.join.QuotationJoinQuotationModDTO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -121,5 +122,53 @@ public class PISDR601Test {
 
 		return mapMockQuotationEntity;
 	}
-	
+
+	@Test
+	public void executeFindQuotationInformationByInternalQuotation_TestOK(){
+		Map<String, Object> mapQuotationResponse = getQuotationMap();
+
+		Mockito.when(this.jdbcUtils.queryForMap(Mockito.anyString(), Mockito.anyMap()))
+				.thenReturn(mapQuotationResponse);
+
+		QuotationJoinQuotationModDTO result = this.pisdR601.executeFindQuotationInfoByQuotationId("0814000000691");
+
+		Assert.assertNotNull(result);
+		Assert.assertNotNull(result.getQuotation());
+		Assert.assertNotNull(result.getQuotation().getUserAuditId());
+		Assert.assertNotNull(result.getQuotation().getCustomerId());
+		Assert.assertNotNull(result.getQuotation().getPolicyQuotaStatusType());
+		Assert.assertNotNull(result.getQuotation().getPersonalDocType());
+		Assert.assertNotNull(result.getQuotation().getParticipantPersonalId());
+		Assert.assertNull(result.getQuotation().getRfqInternalId());
+		Assert.assertNotNull(result.getQuotationMod());
+		Assert.assertNotNull(result.getQuotationMod().getInsuranceModalityType());
+		Assert.assertNotNull(result.getQuotationMod().getContactEmailDesc());
+		Assert.assertNotNull(result.getQuotationMod().getCustomerPhoneDesc());
+		Assert.assertNotNull(result.getInsuranceProductType());
+	}
+
+	@Test
+	public void executeFindQuotationInformationByInternalQuotation_QuotationNull(){
+
+		QuotationJoinQuotationModDTO result = this.pisdR601.executeFindQuotationInfoByQuotationId(null);
+
+		Assert.assertNull(result);
+	}
+
+	private Map<String, Object> getQuotationMap() {
+		Map<String,Object> mapQuotationResponse = new HashMap<>();
+		mapQuotationResponse.put("QUOTE_DATE","2023-01-17");
+		mapQuotationResponse.put("INSURANCE_MODALITY_TYPE","02");
+		mapQuotationResponse.put("INSURANCE_PRODUCT_TYPE","842");
+		mapQuotationResponse.put("USER_AUDIT_ID","ZG13001");
+		mapQuotationResponse.put("CUSTOMER_ID","97171889");
+		mapQuotationResponse.put("POLICY_QUOTA_STATUS_TYPE","COT");
+		mapQuotationResponse.put("PERSONAL_DOC_TYPE","R");
+		mapQuotationResponse.put("PARTICIPANT_PERSONAL_ID","20763156118");
+		mapQuotationResponse.put("CONTACT_EMAIL_DESC","cristian.segovia@bbva.com");
+		mapQuotationResponse.put("CUSTOMER_PHONE_DESC","973834312");
+		mapQuotationResponse.put("RFQ_INTERNAL_ID",null);
+		return mapQuotationResponse;
+	}
+
 }
