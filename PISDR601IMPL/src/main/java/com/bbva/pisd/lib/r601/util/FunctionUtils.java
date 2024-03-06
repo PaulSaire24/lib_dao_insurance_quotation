@@ -14,13 +14,4 @@ public class FunctionUtils {
         return Arrays.stream(keys).allMatch(key -> Objects.nonNull(arguments.get(key)));
     }
 
-    public static String getDateTimeToString(Map<String, Object> data, String key) {
-        String strDate = null;
-        if (data.get(key) != null) {
-            strDate = data.get(key).toString().trim();
-
-        }
-        return strDate;
-    }
-
 }

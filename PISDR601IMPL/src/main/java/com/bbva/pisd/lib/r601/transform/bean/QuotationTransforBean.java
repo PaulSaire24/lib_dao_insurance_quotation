@@ -5,6 +5,7 @@ import com.bbva.pisd.dto.insurancedao.entities.InsuranceProductEntity;
 import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
 import com.bbva.pisd.dto.insurancedao.entities.QuotationModEntity;
 import com.bbva.pisd.dto.insurancedao.join.QuotationJoinCustomerInformationDTO;
+import com.bbva.pisd.dto.insurancedao.join.QuotationJoinQuotationModDTO;
 import com.bbva.pisd.lib.r601.util.FunctionUtils;
 
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.Map;
 
 public class QuotationTransforBean {
+
 
     public static QuotationJoinCustomerInformationDTO mapTransforSimulationEntity(Map<String,Object> mapQuotation){
         QuotationJoinCustomerInformationDTO quotationJoinInformation = new QuotationJoinCustomerInformationDTO();
@@ -38,6 +40,30 @@ public class QuotationTransforBean {
         quotationJoinInformation.setInsuranceProduct(insuranceProductEntity);
         quotationJoinInformation.setInsuranceBusiness(insuranceBusinessEntity);
         return quotationJoinInformation;
+    }
+
+    public static QuotationJoinQuotationModDTO mapTransformQuotationModEntity(Map<String,Object> mapQuotation){
+        QuotationJoinQuotationModDTO quotationInfo = new QuotationJoinQuotationModDTO();
+
+        QuotationModEntity quotationModEntity = new QuotationModEntity();
+        quotationModEntity.setInsuranceModalityType((String) mapQuotation.get("INSURANCE_MODALITY_TYPE"));
+        quotationModEntity.setContactEmailDesc((String) mapQuotation.get("CONTACT_EMAIL_DESC"));
+        quotationModEntity.setCustomerPhoneDesc((String) mapQuotation.get("CUSTOMER_PHONE_DESC"));
+
+        QuotationEntity quotationEntity = new QuotationEntity();
+        quotationEntity.setQuoteDate((String) mapQuotation.get("QUOTE_DATE"));
+        quotationEntity.setUserAuditId((String) mapQuotation.get("USER_AUDIT_ID"));
+        quotationEntity.setCustomerId((String) mapQuotation.get("CUSTOMER_ID"));
+        quotationEntity.setPolicyQuotaStatusType((String) mapQuotation.get("POLICY_QUOTA_STATUS_TYPE"));
+        quotationEntity.setPersonalDocType((String) mapQuotation.get("PERSONAL_DOC_TYPE"));
+        quotationEntity.setParticipantPersonalId((String) mapQuotation.get("PARTICIPANT_PERSONAL_ID"));
+        quotationEntity.setRfqInternalId((String) mapQuotation.get("RFQ_INTERNAL_ID"));
+
+        quotationInfo.setQuotationMod(quotationModEntity);
+        quotationInfo.setInsuranceProductType((String) mapQuotation.get("INSURANCE_PRODUCT_TYPE"));
+        quotationInfo.setQuotation(quotationEntity);
+
+        return quotationInfo;
     }
 
 }

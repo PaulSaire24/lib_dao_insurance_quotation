@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class QuotationTransforMap {
 
+    private QuotationTransforMap(){}
+
     public static Map<String,Object> policyQuotaInternalIdTransforMap(String policyQuotaInternalId){
         Map<String,Object> mapQuerySearchByPolicyQuotaInternalId = new HashMap<>();
         mapQuerySearchByPolicyQuotaInternalId.put("POLICY_QUOTA_INTERNAL_ID",policyQuotaInternalId);
