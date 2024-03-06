@@ -6,14 +6,13 @@ import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
 import com.bbva.pisd.dto.insurancedao.entities.QuotationModEntity;
 import com.bbva.pisd.dto.insurancedao.join.QuotationJoinCustomerInformationDTO;
 import com.bbva.pisd.dto.insurancedao.join.QuotationJoinQuotationModDTO;
-import com.bbva.pisd.lib.r601.util.FunctionUtils;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.Map;
 
 public class QuotationTransforBean {
 
+    private QuotationTransforBean(){}
 
     public static QuotationJoinCustomerInformationDTO mapTransforSimulationEntity(Map<String,Object> mapQuotation){
         QuotationJoinCustomerInformationDTO quotationJoinInformation = new QuotationJoinCustomerInformationDTO();

@@ -4,7 +4,6 @@ package com.bbva.pisd.lib.r601.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-
 public class JsonHelper {
 
     private static final String DATE = "yyyy-MM-dd";

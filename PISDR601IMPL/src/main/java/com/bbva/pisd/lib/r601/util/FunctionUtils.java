@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Objects;
 
 public class FunctionUtils {
+
+    private FunctionUtils(){}
+
     /**
      *  @allParametersNotNull(arguments,keys)
      *  return true -> all parameters save simulation not null
