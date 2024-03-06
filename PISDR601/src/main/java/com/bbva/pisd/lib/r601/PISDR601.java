@@ -14,6 +14,6 @@ public interface PISDR601 {
 	 */
 	QuotationJoinCustomerInformationDTO executeFindQuotationJoinByPolicyQuotaInternalId(String policyQuotaInternalId);
 
-	QuotationJoinQuotationModDTO executeFindQuotationInformationByInternalQuotation(String policyQuotaInternalId);
+	QuotationJoinQuotationModDTO executeFindQuotationInfoByQuotationId(String policyQuotaInternalId);
 
 }

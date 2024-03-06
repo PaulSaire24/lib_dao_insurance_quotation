@@ -29,7 +29,7 @@ public class PISDR601Impl extends PISDR601Abstract {
 	}
 
 	@Override
-	public QuotationJoinQuotationModDTO executeFindQuotationInformationByInternalQuotation(String policyQuotaInternalId) {
+	public QuotationJoinQuotationModDTO executeFindQuotationInfoByQuotationId(String policyQuotaInternalId) {
 		LOGGER.info(" :: executeFindQuotationInformationByInternalQuotation [ policyQuotaInternalId :: {} ]", policyQuotaInternalId);
 		QuotationJoinQuotationModDTO result = this.quotationDAO.findQuotationJoinQuotationMod(policyQuotaInternalId);
 		LOGGER.info(" :: executeFindQuotationInformationByInternalQuotation [ QuotationEntity :: {} ]", JsonHelper.getInstance().toJsonString(result));

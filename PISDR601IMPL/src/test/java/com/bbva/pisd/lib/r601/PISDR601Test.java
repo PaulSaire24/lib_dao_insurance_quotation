@@ -130,7 +130,7 @@ public class PISDR601Test {
 		Mockito.when(this.jdbcUtils.queryForMap(Mockito.anyString(), Mockito.anyMap()))
 				.thenReturn(mapQuotationResponse);
 
-		QuotationJoinQuotationModDTO result = this.pisdR601.executeFindQuotationInformationByInternalQuotation("0814000000691");
+		QuotationJoinQuotationModDTO result = this.pisdR601.executeFindQuotationInfoByQuotationId("0814000000691");
 
 		Assert.assertNotNull(result);
 		Assert.assertNotNull(result.getQuotation());
@@ -150,7 +150,7 @@ public class PISDR601Test {
 	@Test
 	public void executeFindQuotationInformationByInternalQuotation_QuotationNull(){
 
-		QuotationJoinQuotationModDTO result = this.pisdR601.executeFindQuotationInformationByInternalQuotation(null);
+		QuotationJoinQuotationModDTO result = this.pisdR601.executeFindQuotationInfoByQuotationId(null);
 
 		Assert.assertNull(result);
 	}
