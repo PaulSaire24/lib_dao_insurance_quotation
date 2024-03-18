@@ -4,7 +4,7 @@ import com.bbva.pisd.dto.insurancedao.entities.InsuranceBusinessEntity;
 import com.bbva.pisd.dto.insurancedao.entities.InsuranceProductEntity;
 import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
 import com.bbva.pisd.dto.insurancedao.entities.QuotationModEntity;
-import com.bbva.pisd.dto.insurancedao.join.QuotationJoinCustomerInformationDTO;
+import com.bbva.pisd.dto.insurancedao.join.QuotationCustomerDTO;
 import com.bbva.pisd.dto.insurancedao.join.QuotationJoinQuotationModDTO;
 
 import java.math.BigDecimal;
@@ -14,8 +14,8 @@ public class QuotationTransforBean {
 
     private QuotationTransforBean(){}
 
-    public static QuotationJoinCustomerInformationDTO mapTransforSimulationEntity(Map<String,Object> mapQuotation){
-        QuotationJoinCustomerInformationDTO quotationJoinInformation = new QuotationJoinCustomerInformationDTO();
+    public static QuotationCustomerDTO mapTransforSimulationEntity(Map<String,Object> mapQuotation){
+        QuotationCustomerDTO quotationJoinInformation = new QuotationCustomerDTO();
 
         QuotationEntity quotationEntity = new QuotationEntity();
         QuotationModEntity quotationModEntity = new QuotationModEntity();

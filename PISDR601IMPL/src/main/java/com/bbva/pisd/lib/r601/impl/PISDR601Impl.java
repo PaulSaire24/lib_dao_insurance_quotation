@@ -1,6 +1,6 @@
 package com.bbva.pisd.lib.r601.impl;
 
-import com.bbva.pisd.dto.insurancedao.join.QuotationJoinCustomerInformationDTO;
+import com.bbva.pisd.dto.insurancedao.join.QuotationCustomerDTO;
 import com.bbva.pisd.dto.insurancedao.join.QuotationJoinQuotationModDTO;
 import com.bbva.pisd.lib.r601.interfaces.QuotationDAO;
 import com.bbva.pisd.lib.r601.util.JsonHelper;
@@ -21,9 +21,9 @@ public class PISDR601Impl extends PISDR601Abstract {
 	 * @executeFindQuotationByPolicyQuotaInternalId(policyQuotaInternalId)
 	 */
 	@Override
-	public QuotationJoinCustomerInformationDTO executeFindQuotationJoinByPolicyQuotaInternalId(String policyQuotaInternalId) {
+	public QuotationCustomerDTO executeFindQuotationJoinByPolicyQuotaInternalId(String policyQuotaInternalId) {
 		LOGGER.info(" :: executeFindQuotationByPolicyQuotaInternalId [ policyQuotaInternalId :: {} ]", policyQuotaInternalId);
-		QuotationJoinCustomerInformationDTO result = this.quotationDAO.findQuotationByPolicyQuotaInternalId(policyQuotaInternalId);
+		QuotationCustomerDTO result = this.quotationDAO.findQuotationByPolicyQuotaInternalId(policyQuotaInternalId);
 		LOGGER.info(" :: executeFindQuotationByPolicyQuotaInternalId [ QuotationEntity :: {} ]", JsonHelper.getInstance().toJsonString(result));
 		return result;
 	}

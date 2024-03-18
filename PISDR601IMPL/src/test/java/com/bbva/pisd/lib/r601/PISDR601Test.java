@@ -6,7 +6,7 @@ import com.bbva.elara.domain.transaction.Context;
 import com.bbva.elara.domain.transaction.ThreadContext;
 import com.bbva.elara.utility.jdbc.JdbcUtils;
 import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
-import com.bbva.pisd.dto.insurancedao.join.QuotationJoinCustomerInformationDTO;
+import com.bbva.pisd.dto.insurancedao.join.QuotationCustomerDTO;
 import com.bbva.pisd.dto.insurancedao.join.QuotationJoinQuotationModDTO;
 import org.junit.Assert;
 import org.junit.Before;
@@ -85,7 +85,7 @@ public class PISDR601Test {
 		/**
 		 * Ejecución
 		 * */
-		QuotationJoinCustomerInformationDTO result = this.pisdR601.executeFindQuotationJoinByPolicyQuotaInternalId("0814000000691");
+		QuotationCustomerDTO result = this.pisdR601.executeFindQuotationJoinByPolicyQuotaInternalId("0814000000691");
 		Assert.assertNotNull(result);
 		Assert.assertNotNull(result.getQuotation());
 		Assert.assertEquals("customer name",result.getQuotation().getInsuredCustomerName());
@@ -105,7 +105,7 @@ public class PISDR601Test {
 		/**
 		 * Execution
 		 * */
-		QuotationJoinCustomerInformationDTO result = this.pisdR601.executeFindQuotationJoinByPolicyQuotaInternalId(null);
+		QuotationCustomerDTO result = this.pisdR601.executeFindQuotationJoinByPolicyQuotaInternalId(null);
 		Assert.assertNull(result);
 		Assert.assertEquals(0, context.getAdviceList().size());
 	}

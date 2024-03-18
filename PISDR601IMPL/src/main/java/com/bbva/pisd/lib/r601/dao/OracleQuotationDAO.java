@@ -2,7 +2,7 @@ package com.bbva.pisd.lib.r601.dao;
 
 import com.bbva.apx.exception.business.BusinessException;
 import com.bbva.pisd.dto.insurancedao.constants.PISDInsuranceErrors;
-import com.bbva.pisd.dto.insurancedao.join.QuotationJoinCustomerInformationDTO;
+import com.bbva.pisd.dto.insurancedao.join.QuotationCustomerDTO;
 import com.bbva.pisd.dto.insurancedao.join.QuotationJoinQuotationModDTO;
 import com.bbva.pisd.dto.insurancedao.operation.Operation;
 import com.bbva.pisd.dto.insurancedao.operation.OperationConstants;
@@ -21,7 +21,7 @@ public class OracleQuotationDAO implements QuotationDAO {
     private BaseDAO baseDAO;
 
     @Override
-    public QuotationJoinCustomerInformationDTO findQuotationByPolicyQuotaInternalId(String policyQuotaInternalId) {
+    public QuotationCustomerDTO findQuotationByPolicyQuotaInternalId(String policyQuotaInternalId) {
         Map<String,Object> mapQuerySearchByPolicyQuotaInternalId = QuotationTransforMap.policyQuotaInternalIdTransforMap(policyQuotaInternalId);
         if (FunctionUtils.parametersIsValid(mapQuerySearchByPolicyQuotaInternalId,"POLICY_QUOTA_INTERNAL_ID")) {
             Operation operationDTO = Operation.Builder.an().withTypeOperation(OperationConstants.Operation.SELECT)
