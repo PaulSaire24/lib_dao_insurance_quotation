@@ -175,6 +175,7 @@ public class PISDR601Test {
 		mapQuotationResponse.put("PARTICIPANT_PERSONAL_ID","20763156118");
 		mapQuotationResponse.put("CONTACT_EMAIL_DESC","cristian.segovia@bbva.com");
 		mapQuotationResponse.put("CUSTOMER_PHONE_DESC","973834312");
+		mapQuotationResponse.put("RFQ_INTERNAL_ID",null);
 		mapQuotationResponse.put("INSURANCE_MODALITY_NAME","PLAN PLATA");
 		mapQuotationResponse.put("INSUR_MODALITY_DESC","PLAN 02 VIDA LEY");
 		mapQuotationResponse.put("INSURANCE_COMPANY_MODALITY_ID","545612");
