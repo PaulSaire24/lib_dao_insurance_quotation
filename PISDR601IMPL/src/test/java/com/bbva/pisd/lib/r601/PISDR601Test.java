@@ -133,6 +133,7 @@ public class PISDR601Test {
 		QuotationJoinQuotationModDTO result = this.pisdR601.executeFindQuotationInfoByQuotationId("0814000000691");
 
 		Assert.assertNotNull(result);
+
 		Assert.assertNotNull(result.getQuotation());
 		Assert.assertNotNull(result.getQuotation().getUserAuditId());
 		Assert.assertNotNull(result.getQuotation().getCustomerId());
@@ -140,11 +141,17 @@ public class PISDR601Test {
 		Assert.assertNotNull(result.getQuotation().getPersonalDocType());
 		Assert.assertNotNull(result.getQuotation().getParticipantPersonalId());
 		Assert.assertNull(result.getQuotation().getRfqInternalId());
+
 		Assert.assertNotNull(result.getQuotationMod());
 		Assert.assertNotNull(result.getQuotationMod().getInsuranceModalityType());
 		Assert.assertNotNull(result.getQuotationMod().getContactEmailDesc());
 		Assert.assertNotNull(result.getQuotationMod().getCustomerPhoneDesc());
 		Assert.assertNotNull(result.getInsuranceProductType());
+
+		Assert.assertNotNull(result.getModality());
+		Assert.assertNotNull(result.getModality().getInsuranceModalityName());
+		Assert.assertNotNull(result.getModality().getInsurModalityDesc());
+		Assert.assertNotNull(result.getModality().getInsuranceCompanyModalityId());
 	}
 
 	@Test
@@ -157,6 +164,7 @@ public class PISDR601Test {
 
 	private Map<String, Object> getQuotationMap() {
 		Map<String,Object> mapQuotationResponse = new HashMap<>();
+
 		mapQuotationResponse.put("QUOTE_DATE","2023-01-17");
 		mapQuotationResponse.put("INSURANCE_MODALITY_TYPE","02");
 		mapQuotationResponse.put("INSURANCE_PRODUCT_TYPE","842");
@@ -167,7 +175,10 @@ public class PISDR601Test {
 		mapQuotationResponse.put("PARTICIPANT_PERSONAL_ID","20763156118");
 		mapQuotationResponse.put("CONTACT_EMAIL_DESC","cristian.segovia@bbva.com");
 		mapQuotationResponse.put("CUSTOMER_PHONE_DESC","973834312");
-		mapQuotationResponse.put("RFQ_INTERNAL_ID",null);
+		mapQuotationResponse.put("INSURANCE_MODALITY_NAME","PLAN PLATA");
+		mapQuotationResponse.put("INSUR_MODALITY_DESC","PLAN 02 VIDA LEY");
+		mapQuotationResponse.put("INSURANCE_COMPANY_MODALITY_ID","545612");
+
 		return mapQuotationResponse;
 	}
 

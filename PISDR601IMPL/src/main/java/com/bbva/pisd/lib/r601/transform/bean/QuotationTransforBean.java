@@ -1,9 +1,10 @@
 package com.bbva.pisd.lib.r601.transform.bean;
 
-import com.bbva.pisd.dto.insurancedao.entities.InsuranceBusinessEntity;
-import com.bbva.pisd.dto.insurancedao.entities.InsuranceProductEntity;
-import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
 import com.bbva.pisd.dto.insurancedao.entities.QuotationModEntity;
+import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
+import com.bbva.pisd.dto.insurancedao.entities.InsuranceProductEntity;
+import com.bbva.pisd.dto.insurancedao.entities.InsuranceBusinessEntity;
+import com.bbva.pisd.dto.insurancedao.entities.ModalityEntity;
 import com.bbva.pisd.dto.insurancedao.join.QuotationCustomerDTO;
 import com.bbva.pisd.dto.insurancedao.join.QuotationJoinQuotationModDTO;
 
@@ -58,9 +59,15 @@ public class QuotationTransforBean {
         quotationEntity.setParticipantPersonalId((String) mapQuotation.get("PARTICIPANT_PERSONAL_ID"));
         quotationEntity.setRfqInternalId((String) mapQuotation.get("RFQ_INTERNAL_ID"));
 
+        ModalityEntity modalityEntity = new ModalityEntity();
+        modalityEntity.setInsuranceCompanyModalityId((String) mapQuotation.get("INSURANCE_COMPANY_MODALITY_ID"));
+        modalityEntity.setInsurModalityDesc((String) mapQuotation.get("INSUR_MODALITY_DESC"));
+        modalityEntity.setInsuranceModalityName((String) mapQuotation.get("INSURANCE_MODALITY_NAME"));
+
         quotationInfo.setQuotationMod(quotationModEntity);
         quotationInfo.setInsuranceProductType((String) mapQuotation.get("INSURANCE_PRODUCT_TYPE"));
         quotationInfo.setQuotation(quotationEntity);
+        quotationInfo.setModality(modalityEntity);
 
         return quotationInfo;
     }
