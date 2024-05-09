@@ -20,7 +20,7 @@ public class OracleQuotationDAO implements QuotationDAO {
     private BaseDAO baseDAO;
 
     @Override
-    public QuotationEntity findInternalIdAdnPayrollIdJoinByPolicyQuotaInternalId(String policyQuotaInternalId) {
+    public QuotationEntity findQuotationByReferenceAndPayrollId(String policyQuotaInternalId) {
         Map<String,Object> mapQuerySearchByPolicyQuotaInternalId = QuotationTransforMap.policyQuotaInternalIdTransforMap(policyQuotaInternalId);
         if (FunctionUtils.parametersIsValid(mapQuerySearchByPolicyQuotaInternalId,"POLICY_QUOTA_INTERNAL_ID")) {
             Operation operationDTO = Operation.Builder.an().withTypeOperation(OperationConstants.Operation.SELECT)

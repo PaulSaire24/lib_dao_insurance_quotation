@@ -4,6 +4,6 @@ import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
 
 public interface QuotationDAO {
 
-    QuotationEntity findInternalIdAdnPayrollIdJoinByPolicyQuotaInternalId(String policyQuotaInternalId) ;
+    QuotationEntity findQuotationByReferenceAndPayrollId(String policyQuotaInternalId) ;
 
 }

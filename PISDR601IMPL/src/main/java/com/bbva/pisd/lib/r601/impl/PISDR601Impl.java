@@ -20,10 +20,10 @@ public class PISDR601Impl extends PISDR601Abstract {
 	 * @executeFindQuotationByPolicyQuotaInternalId(policyQuotaInternalId)
 	 */
 	@Override
-	public QuotationEntity executeFindInternalIdAdnPayrollId(String policyQuotaInternalId) {
-		LOGGER.info(" :: executeFindInternalIdAdnPayrollIdJoinByPolicyQuotaInternalId [ policyQuotaInternalId :: {} ]", policyQuotaInternalId);
-		QuotationEntity result = this.quotationDAO.findInternalIdAdnPayrollIdJoinByPolicyQuotaInternalId(policyQuotaInternalId);
-		LOGGER.info(" :: executeFindInternalIdAdnPayrollIdJoinByPolicyQuotaInternalId [ QuotationEntity :: {} ]", JsonHelper.getInstance().toJsonString(result));
+	public QuotationEntity executeFindQuotationByReferenceAndPayrollId(String policyQuotaInternalId) {
+		LOGGER.info(" :: executeFindQuotationByReferenceAndPayrollId [ policyQuotaInternalId :: {} ]", policyQuotaInternalId);
+		QuotationEntity result = this.quotationDAO.findQuotationByReferenceAndPayrollId(policyQuotaInternalId);
+		LOGGER.info(" :: executeFindQuotationByReferenceAndPayrollId [ QuotationEntity :: {} ]", JsonHelper.getInstance().toJsonString(result));
 		return result;
 	}
 
