@@ -11,5 +11,5 @@ public interface PISDR601 {
 	/**
 	 * The execute method...
 	 */
-	QuotationEntity executeFindInternalIdAdnPayrollIdJoinByPolicyQuotaInternalId(String policyQuotaInternalId);
+	QuotationEntity executeFindInternalIdAdnPayrollId(String policyQuotaInternalId);
 }

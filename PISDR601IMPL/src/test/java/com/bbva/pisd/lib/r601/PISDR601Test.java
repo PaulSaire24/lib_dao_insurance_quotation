@@ -83,7 +83,7 @@ public class PISDR601Test {
 		/**
 		 * Ejecución
 		 * */
-		QuotationEntity result = this.pisdR601.executeFindInternalIdAdnPayrollIdJoinByPolicyQuotaInternalId("0814000000691");
+		QuotationEntity result = this.pisdR601.executeFindInternalIdAdnPayrollId("0814000000691");
 		Assert.assertNotNull(result);
 		Assert.assertEquals("customer name",result.getRfqInternalId());
 		Assert.assertEquals("client last name",result.getPayrollId());
@@ -95,7 +95,7 @@ public class PISDR601Test {
 		/**
 		 * Execution
 		 * */
-		QuotationEntity result = this.pisdR601.executeFindInternalIdAdnPayrollIdJoinByPolicyQuotaInternalId(null);
+		QuotationEntity result = this.pisdR601.executeFindInternalIdAdnPayrollId(null);
 		Assert.assertNull(result);
 		Assert.assertEquals(0, context.getAdviceList().size());
 	}
