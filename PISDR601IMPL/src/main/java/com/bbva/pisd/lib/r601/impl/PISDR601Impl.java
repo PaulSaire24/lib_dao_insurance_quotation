@@ -1,7 +1,6 @@
 package com.bbva.pisd.lib.r601.impl;
 
-import com.bbva.pisd.dto.insurancedao.join.QuotationCustomerDTO;
-import com.bbva.pisd.dto.insurancedao.join.QuotationJoinQuotationModDTO;
+import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
 import com.bbva.pisd.lib.r601.interfaces.QuotationDAO;
 import com.bbva.pisd.lib.r601.util.JsonHelper;
 import org.slf4j.Logger;
@@ -21,18 +20,10 @@ public class PISDR601Impl extends PISDR601Abstract {
 	 * @executeFindQuotationByPolicyQuotaInternalId(policyQuotaInternalId)
 	 */
 	@Override
-	public QuotationCustomerDTO executeFindQuotationJoinByPolicyQuotaInternalId(String policyQuotaInternalId) {
-		LOGGER.info(" :: executeFindQuotationByPolicyQuotaInternalId [ policyQuotaInternalId :: {} ]", policyQuotaInternalId);
-		QuotationCustomerDTO result = this.quotationDAO.findQuotationByPolicyQuotaInternalId(policyQuotaInternalId);
-		LOGGER.info(" :: executeFindQuotationByPolicyQuotaInternalId [ QuotationEntity :: {} ]", JsonHelper.getInstance().toJsonString(result));
-		return result;
-	}
-
-	@Override
-	public QuotationJoinQuotationModDTO executeFindQuotationInfoByQuotationId(String policyQuotaInternalId) {
-		LOGGER.info(" :: executeFindQuotationInformationByInternalQuotation [ policyQuotaInternalId :: {} ]", policyQuotaInternalId);
-		QuotationJoinQuotationModDTO result = this.quotationDAO.findQuotationJoinQuotationMod(policyQuotaInternalId);
-		LOGGER.info(" :: executeFindQuotationInformationByInternalQuotation [ QuotationEntity :: {} ]", JsonHelper.getInstance().toJsonString(result));
+	public QuotationEntity executeFindQuotationByReferenceAndPayrollId(String policyQuotaInternalId) {
+		LOGGER.info(" :: executeFindQuotationByReferenceAndPayrollId [ policyQuotaInternalId :: {} ]", policyQuotaInternalId);
+		QuotationEntity result = this.quotationDAO.findQuotationByReferenceAndPayrollId(policyQuotaInternalId);
+		LOGGER.info(" :: executeFindQuotationByReferenceAndPayrollId [ QuotationEntity :: {} ]", JsonHelper.getInstance().toJsonString(result));
 		return result;
 	}
 
