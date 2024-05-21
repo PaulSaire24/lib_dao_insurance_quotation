@@ -140,6 +140,34 @@ public class BaseDAOTest {
     }
 
     @Test
+    public void executeQueryForListWithNoParams(){
+        LOGGER.info("Executing the executeQueryForListWithNoParams...");
+        Operation opSelect = new Operation();
+        opSelect.setTypeOperation(OperationConstants.Operation.SELECT);
+        opSelect.setForListQuery(false);
+        opSelect.setParams(null);
+        opSelect.setContainsParameters(false);
+
+        Map<String, Object> resultExpected = new HashMap<>();
+        resultExpected.put("INSURANCE_CONTRACT_ENTITY_ID","0011");
+        resultExpected.put("INSURANCE_CONTRACT_BRANCH_ID","0486");
+        resultExpected.put("INSRC_CONTRACT_INT_ACCOUNT_ID","1222");
+        resultExpected.put("SETTLE_PENDING_VAR_PREM_AMOUNT","2500");
+
+        Mockito.when(jdbcUtils.queryForMap(Mockito.anyString())).thenReturn(resultExpected);
+
+        Object resultObject= baseDAO.executeQuery(opSelect);
+        Map<String,Object> result = (Map<String,Object>) resultObject;
+
+        Assert.assertNotNull(resultObject);
+
+        Assert.assertEquals(4,result.size());
+        Mockito.verify(jdbcUtils, Mockito.atLeastOnce())
+                .queryForMap(Mockito.anyString());
+    }
+
+
+    @Test
     public void executeQueryNoResultExceptionTest(){
         LOGGER.info("Executing the executeQueryUpdateTest...");
         Operation opUpdated = new Operation();

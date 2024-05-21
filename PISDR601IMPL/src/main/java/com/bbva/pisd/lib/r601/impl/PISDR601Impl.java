@@ -6,6 +6,8 @@ import com.bbva.pisd.lib.r601.util.JsonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
+
 /**
  * The PISDR601Impl class...
  */
@@ -24,6 +26,14 @@ public class PISDR601Impl extends PISDR601Abstract {
 		LOGGER.info(" :: executeFindQuotationByReferenceAndPayrollId [ policyQuotaInternalId :: {} ]", policyQuotaInternalId);
 		QuotationEntity result = this.quotationDAO.findQuotationByReferenceAndPayrollId(policyQuotaInternalId);
 		LOGGER.info(" :: executeFindQuotationByReferenceAndPayrollId [ QuotationEntity :: {} ]", JsonHelper.getInstance().toJsonString(result));
+		return result;
+	}
+
+	@Override
+	public Map<String, Object> executeFindQuotationDetailForPreEmision(String quotationId) {
+		LOGGER.info("PISDR601Impl :: executeFindQuotationDetailForPreEmision [ quotationId :: {} ]", quotationId);
+		Map<String,Object> result = this.quotationDAO.findQuotationDetail(quotationId);
+		LOGGER.info("PISDR601Impl :: executeFindQuotationDetailForPreEmision [ result :: {} ]", JsonHelper.getInstance().toJsonString(result));
 		return result;
 	}
 

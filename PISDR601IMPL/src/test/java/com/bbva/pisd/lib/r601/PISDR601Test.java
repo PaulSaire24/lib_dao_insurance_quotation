@@ -5,6 +5,7 @@ import com.bbva.elara.configuration.manager.application.ApplicationConfiguration
 import com.bbva.elara.domain.transaction.Context;
 import com.bbva.elara.domain.transaction.ThreadContext;
 import com.bbva.elara.utility.jdbc.JdbcUtils;
+import com.bbva.pisd.dto.insurancedao.constants.PISDColumn;
 import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,6 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -87,6 +89,42 @@ public class PISDR601Test {
 		Assert.assertNotNull(result);
 		Assert.assertEquals("customer name",result.getRfqInternalId());
 		Assert.assertEquals("client last name",result.getPayrollId());
+		Assert.assertEquals(0, context.getAdviceList().size());
+	}
+
+	@Test
+	public void testOK_executeFindQuotationDetailForPreEmision(){
+		/**
+		 *  Data de prueba
+		 * */
+		Map<String,Object> mapResponse = new HashMap<>();
+		mapResponse.put("INSURANCE_BUSINESS_NAME","VIDA");
+		mapResponse.put("INSURANCE_PRODUCT_DESC","PRODUCTO VIDA");
+		mapResponse.put("INSURANCE_MODALITY_NAME","PLAN PLATA");
+		/**
+		 *  Context
+		 * */
+		Mockito.when(this.jdbcUtils.queryForMap("PISD.SELECT_QUOTATION_DETAIL_FOR_PRE_EMISION",
+				Collections.singletonMap(PISDColumn.Contract.FIELD_POLICY_QUOTA_INTERNAL_ID,"06353227333")))
+				.thenReturn(mapResponse);
+		/**
+		 * Ejecución
+		 * */
+		Map<String, Object> result = this.pisdR601.executeFindQuotationDetailForPreEmision("06353227333");
+		Assert.assertNotNull(result);
+		Assert.assertEquals("VIDA",result.get("INSURANCE_BUSINESS_NAME"));
+		Assert.assertEquals("PRODUCTO VIDA",result.get("INSURANCE_PRODUCT_DESC"));
+		Assert.assertEquals(0, context.getAdviceList().size());
+	}
+
+	@Test
+	public void testArgumentNull_executeFindQuotationDetailForPreEmision(){
+		/**
+		 * Execution
+		 * */
+		Map<String, Object> result = this.pisdR601.executeFindQuotationDetailForPreEmision(null);
+		Assert.assertNotNull(result);
+		Assert.assertEquals(0,result.size());
 		Assert.assertEquals(0, context.getAdviceList().size());
 	}
 
