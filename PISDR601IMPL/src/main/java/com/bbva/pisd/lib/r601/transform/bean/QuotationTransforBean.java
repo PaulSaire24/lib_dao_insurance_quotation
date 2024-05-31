@@ -1,5 +1,7 @@
 package com.bbva.pisd.lib.r601.transform.bean;
 import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
+
+import java.util.Date;
 import java.util.Map;
 
 public class QuotationTransforBean {
@@ -11,6 +13,9 @@ public class QuotationTransforBean {
         QuotationEntity quotationEntity = new QuotationEntity();
         quotationEntity.setRfqInternalId((String) mapQuotation.get("RFQ_INTERNAL_ID"));
         quotationEntity.setPayrollId((String) mapQuotation.get("PAYROLL_ID"));
+        quotationEntity.setPolicyQuotaInternalId((String) mapQuotation.get("POLICY_QUOTA_INTERNAL_ID"));
+        quotationEntity.setCreationDate((Date) mapQuotation.get("CREATION_DATE"));
+        quotationEntity.setAuditDate((Date) mapQuotation.get("AUDIT_DATE"));
 
         return quotationEntity;
     }
