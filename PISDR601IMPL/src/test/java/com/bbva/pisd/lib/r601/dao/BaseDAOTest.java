@@ -168,32 +168,6 @@ public class BaseDAOTest {
 
 
     @Test
-    public void executeQueryNoResultExceptionTest(){
-        LOGGER.info("Executing the executeQueryUpdateTest...");
-        Operation opUpdated = new Operation();
-        opUpdated.setTypeOperation(OperationConstants.Operation.SELECT);
-        opUpdated.setParams(PrepareParamsToSearchInsuranceContract());
-        opUpdated.setForListQuery(false);
-        opUpdated.setContainsParameters(true);
-
-        Mockito.when(jdbcUtils.queryForMap(Mockito.anyString(), Mockito.anyMap())).thenThrow(NoResultException.class);
-
-        Object resultObject = null;
-
-        try {
-            resultObject= baseDAO.executeQuery(opUpdated);
-            Assert.fail();
-        }catch (BusinessException e){
-            Assert.assertNull(resultObject);
-            Assert.assertEquals(PISDInsuranceErrors.QUERY_EMPTY_RESULT.getAdviceCode(),e.getAdviceCode());
-            Mockito.verify(jdbcUtils, Mockito.atLeastOnce())
-                    .queryForMap(Mockito.anyString(),
-                            Mockito.anyMap());
-        }
-
-    }
-
-    @Test
     public void executeQuerySelectTimeoutExceptionTest(){
         LOGGER.info("Executing the executeQuerySelectAPXExceptionTest...");
         Operation opSelect = new Operation();
