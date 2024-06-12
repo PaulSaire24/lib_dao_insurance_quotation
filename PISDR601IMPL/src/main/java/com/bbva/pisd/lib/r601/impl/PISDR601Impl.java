@@ -1,6 +1,5 @@
 package com.bbva.pisd.lib.r601.impl;
 
-import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
 import com.bbva.pisd.lib.r601.interfaces.QuotationDAO;
 import com.bbva.pisd.lib.r601.util.JsonHelper;
 import org.slf4j.Logger;
@@ -22,9 +21,9 @@ public class PISDR601Impl extends PISDR601Abstract {
 	 * @executeFindQuotationByPolicyQuotaInternalId(policyQuotaInternalId)
 	 */
 	@Override
-	public QuotationEntity executeFindQuotationByReferenceAndPayrollId(String policyQuotaInternalId) {
+	public Map<String,Object> executeFindQuotationByReferenceAndPayrollId(String policyQuotaInternalId) {
 		LOGGER.info(" :: executeFindQuotationByReferenceAndPayrollId [ policyQuotaInternalId :: {} ]", policyQuotaInternalId);
-		QuotationEntity result = this.quotationDAO.findQuotationByReferenceAndPayrollId(policyQuotaInternalId);
+		Map<String,Object> result = this.quotationDAO.findQuotationByReferenceAndPayrollId(policyQuotaInternalId);
 		LOGGER.info(" :: executeFindQuotationByReferenceAndPayrollId [ QuotationEntity :: {} ]", JsonHelper.getInstance().toJsonString(result));
 		return result;
 	}

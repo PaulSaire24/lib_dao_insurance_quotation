@@ -10,7 +10,12 @@ import org.springframework.osgi.mock.MockServiceReference;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.*;
+import java.util.Map;
+import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collection;
+import java.util.Dictionary;
 
 public class MockBundleContext implements BundleContext,
 		ApplicationContextAware {

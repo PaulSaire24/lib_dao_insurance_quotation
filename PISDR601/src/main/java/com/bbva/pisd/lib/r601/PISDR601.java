@@ -13,6 +13,6 @@ public interface PISDR601 {
 	/**
 	 * The execute method...
 	 */
-	QuotationEntity executeFindQuotationByReferenceAndPayrollId(String policyQuotaInternalId);
+	Map<String,Object> executeFindQuotationByReferenceAndPayrollId(String policyQuotaInternalId);
 	Map<String,Object> executeFindQuotationDetailForPreEmision(String quotationId);
 }
