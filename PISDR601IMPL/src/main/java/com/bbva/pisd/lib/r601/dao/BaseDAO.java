@@ -42,9 +42,6 @@ public class BaseDAO {
                 response = this.jdbcUtils.batchUpdate(operation.getNameProp(), operation.getBatchValues());
             }
 
-        } catch(NoResultException ex) {
-            LOGGER.info("[BaseDAO] - not found data, query Empty Result to {}", operation.getNameProp());
-            throw new BusinessException(PISDInsuranceErrors.QUERY_EMPTY_RESULT.getAdviceCode(), false, ex.getMessage());
         } catch(DuplicateKeyException ex) {
             LOGGER.info("[BaseDAO] - DuplicateKeyException {}", operation.getNameProp());
             throw new BusinessException(PISDInsuranceErrors.ERROR_DUPLICATE_KEY.getAdviceCode(), true, ex.getMessage());

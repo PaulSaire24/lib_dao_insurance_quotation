@@ -6,7 +6,6 @@ import com.bbva.elara.domain.transaction.Context;
 import com.bbva.elara.domain.transaction.ThreadContext;
 import com.bbva.elara.utility.jdbc.JdbcUtils;
 import com.bbva.pisd.dto.insurancedao.constants.PISDColumn;
-import com.bbva.pisd.dto.insurancedao.entities.QuotationEntity;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,10 +20,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Collections;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -85,10 +85,11 @@ public class PISDR601Test {
 		/**
 		 * Ejecución
 		 * */
-		QuotationEntity result = this.pisdR601.executeFindQuotationByReferenceAndPayrollId("0814000000691");
+		Map<String,Object> result = this.pisdR601.executeFindQuotationByReferenceAndPayrollId("0814000000691");
 		Assert.assertNotNull(result);
-		Assert.assertEquals("customer name",result.getRfqInternalId());
-		Assert.assertEquals("client last name",result.getPayrollId());
+		Assert.assertEquals("customer name",result.get("RFQ_INTERNAL_ID"));
+		Assert.assertEquals("client last name",result.get("PAYROLL_ID"));
+
 		Assert.assertEquals(0, context.getAdviceList().size());
 	}
 
@@ -133,7 +134,7 @@ public class PISDR601Test {
 		/**
 		 * Execution
 		 * */
-		QuotationEntity result = this.pisdR601.executeFindQuotationByReferenceAndPayrollId(null);
+		Map<String,Object> result = this.pisdR601.executeFindQuotationByReferenceAndPayrollId(null);
 		Assert.assertNull(result);
 		Assert.assertEquals(0, context.getAdviceList().size());
 	}
@@ -143,6 +144,9 @@ public class PISDR601Test {
 		Map<String,Object> mapMockQuotationEntity = new HashMap<>();
 		mapMockQuotationEntity.put("RFQ_INTERNAL_ID","customer name");
 		mapMockQuotationEntity.put("PAYROLL_ID","client last name");
+		mapMockQuotationEntity.put("POLICY_QUOTA_INTERNAL_ID","12325454546");
+		mapMockQuotationEntity.put("CREATION_DATE",new Date());
+		mapMockQuotationEntity.put("AUDIT_DATE",new Date());
 
 		return mapMockQuotationEntity;
 	}
