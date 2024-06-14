@@ -1,7 +1,5 @@
 package com.bbva.pisd.lib.r601;
 
-
-
 import java.util.Map;
 
 public interface PISDR601 {
